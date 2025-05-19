@@ -93,9 +93,10 @@ def DigitalisAlairas(uzenet, d, p, q):
     return GyorsHatvanyozas(uzenet, d, n)
 
 
-def AlairasEllenorzes(alairas, e, p, q):
+def AlairasEllenorzes(uzenet, alairas, e, p, q):
     n = p * q
-    return GyorsHatvanyozas(alairas, e, n)
+    ellenorzott_uzenet = GyorsHatvanyozas(alairas, e, n)
+    return ellenorzott_uzenet == uzenet
 
 
 if __name__ == "__main__":
@@ -105,10 +106,10 @@ if __name__ == "__main__":
     kodolt = RSAKodolas(uzenet, e, p, q)
     dekodolt = RSADekodolas(kodolt, d, p, q)
     alairas = DigitalisAlairas(uzenet, d, p, q)
-    ellenorzott = AlairasEllenorzes(alairas, e, p, q)
+    ellenorzott = AlairasEllenorzes(uzenet, alairas, e, p, q)
 
     print("Eredeti:", uzenet)
     print("Titkositott:", kodolt)
     print("Visszafejtett:", dekodolt)
     print("Aláírás:", alairas)
-    print("Ellenőrzés:", ellenorzott == uzenet)
+    print("Ellenőrzés:", ellenorzott)
